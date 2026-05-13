@@ -76,3 +76,16 @@ def read_vin():
     vin = response[3:].decode("ascii")
 
     return vin
+
+
+def read_invalid_did():
+
+    response = send_request("22 F1 99")
+
+    if response[0] != 0x7F:
+        raise Exception("Expected Negative Response")
+
+    if response[2] != 0x31:
+        raise Exception("Expected NRC 0x31")
+
+    return response
