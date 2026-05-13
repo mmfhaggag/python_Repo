@@ -2,7 +2,7 @@
 Library    ../libraries/uds_lib.py    WITH NAME    uds
 
 *** Test Cases ***
-Validate VIN DID
+Validate VIN D I D
 
     ${vin}=    uds.Read Vin
 
