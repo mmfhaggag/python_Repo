@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.14.4 on win32)" generated="2026-05-14T16:10:32.745465" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="D:\__Claude\uds_robot_project\tests">
+<suite id="s1-s1" name="Test Vin" source="D:\__Claude\uds_robot_project\tests\test_vin.robot">
+<test id="s1-s1-t1" name="Validate VIN DID Positive Scenario" line="7">
+<kw name="Read Vin" owner="uds">
+<msg time="2026-05-14T16:10:32.811980" level="INFO">Sending Request: 22 F1 90</msg>
+<msg time="2026-05-14T16:10:32.812079" level="INFO">${vin} = WV123456789ABCDEF</msg>
+<var>${vin}</var>
+<status status="PASS" start="2026-05-14T16:10:32.811809" elapsed="0.000300"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2026-05-14T16:10:32.813130" level="INFO">Length is 17.</msg>
+<arg>${vin}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2026-05-14T16:10:32.812591" elapsed="0.000598"/>
+</kw>
+<kw name="Length Should Be" owner="BuiltIn">
+<msg time="2026-05-14T16:10:32.814124" level="INFO">Length is 17.</msg>
+<arg>${vin}</arg>
+<arg>17</arg>
+<doc>Verifies that the length of the given item is correct.</doc>
+<status status="PASS" start="2026-05-14T16:10:32.813550" elapsed="0.000641"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2026-05-14T16:10:32.815229" level="INFO">VIN = WV123456789ABCDEF</msg>
+<arg>VIN = ${vin}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2026-05-14T16:10:32.814649" elapsed="0.000671"/>
+</kw>
+<doc>Verify ECU returns VIN correctly for DID F190</doc>
+<status status="PASS" start="2026-05-14T16:10:32.810899" elapsed="0.004782"/>
+</test>
+<test id="s1-s1-t2" name="Validate Invalid DID Negative Scenario" line="20">
+<kw name="Read Invalid Did" owner="uds">
+<msg time="2026-05-14T16:10:32.817733" level="INFO">Sending Request: 22 F1 99</msg>
+<msg time="2026-05-14T16:10:32.817857" level="INFO">${response} = "1</msg>
+<var>${response}</var>
+<status status="PASS" start="2026-05-14T16:10:32.817602" elapsed="0.000285"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${response}[0]</arg>
+<arg>${0x7F}</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-05-14T16:10:32.818225" elapsed="0.000699"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${response}[1]</arg>
+<arg>${0x22}</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-05-14T16:10:32.819313" elapsed="0.001606"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${response}[2]</arg>
+<arg>${0x31}</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-05-14T16:10:32.821327" elapsed="0.001258"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2026-05-14T16:10:32.823494" level="INFO">Response = "1</msg>
+<arg>Response = ${response}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2026-05-14T16:10:32.823038" elapsed="0.000540"/>
+</kw>
+<doc>Verify ECU returns NRC 0x31 for unsupported DID</doc>
+<status status="PASS" start="2026-05-14T16:10:32.816855" elapsed="0.007140"/>
+</test>
+<status status="PASS" start="2026-05-14T16:10:32.807540" elapsed="0.017554"/>
+</suite>
+<status status="PASS" start="2026-05-14T16:10:32.748513" elapsed="0.077723"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Tests" id="s1" pass="2" fail="0" skip="0">Tests</stat>
+<stat name="Test Vin" id="s1-s1" pass="2" fail="0" skip="0">Tests.Test Vin</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

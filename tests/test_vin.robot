@@ -23,4 +23,10 @@ Validate Invalid DID Negative Scenario
 
     ${response}=    uds.Read Invalid Did
 
+    Should Be Equal As Integers    ${response}[0]    ${0x7F}
+
+    Should Be Equal As Integers    ${response}[1]    ${0x22}
+
+    Should Be Equal As Integers    ${response}[2]    ${0x31}
+
     Log    Response = ${response}
